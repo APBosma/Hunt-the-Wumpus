@@ -76,6 +76,7 @@ while True:
         location = "1"
         arrows = 5
         
+        # While game is running
         while True:
             print("\nYou are now in room", location, "of the cave.")
             move = input("Would you like to shoot, move, or quit? Input S for shoot, M for move, or Q for quit.\n")
@@ -84,6 +85,7 @@ while True:
                 print("You can move to the following rooms:")
                 print(possibleRooms[0], possibleRooms[1], possibleRooms[2])
                 checkRooms(bats, pitfalls, wumpusLocation, possibleRooms)
+                # Input validation for movement
                 while True:
                     newLocation = input("Where would you like to move?\n")
                     if (newLocation in possibleRooms):
