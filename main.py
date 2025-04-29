@@ -1,3 +1,5 @@
+import random
+
 cave = { "1": ["5", "8", "13"], # https://graphonline.top/en/
     "2": ["6", "8", "14"],
     "3": ["13", "17", "16"],
@@ -18,8 +20,8 @@ cave = { "1": ["5", "8", "13"], # https://graphonline.top/en/
     "18": ["7", "10", "18"],
     "19": ["4", "11", "15"],
     "20": ["14", "16", "18"],
-    "Bats": ["7", "14", "2"],
-    "Pitfalls": ["5", "12", "16", "18"],
+    "Bats": ["4", "17"],
+    "Pitfalls": ["20", "2"],
     "Wumpus": "9"
 }
 
@@ -39,6 +41,7 @@ def printInstructions():
     print("When you are one room away from a wumpus or hazard, the computer says:\n")
     print("Wumpus: \"I smell a wumpus\"\nBat: \"Bats nearby\"\nPit: \"I feel a draft\"\n\n")
 
+# Output messages that there is a trap, bats, or wumpus nearby
 def checkRooms(bats, pitfalls, wumpus, possibleRooms):
     # If bats nearby
     if (possibleRooms[0] in bats or possibleRooms[1] in bats or possibleRooms[2] in bats):
@@ -49,6 +52,13 @@ def checkRooms(bats, pitfalls, wumpus, possibleRooms):
     # If nearby pitfall
     if (possibleRooms[0] in pitfalls or possibleRooms[1] in pitfalls or possibleRooms[2] in pitfalls):
         print("I feel a draft")
+
+# Got hit by bats
+def batTrap():
+    print("Uh oh! Bats!")
+    newSpot = random.randint(0, 20)
+    print("After being carried away by bats you find yourself at", newSpot)
+    return str(newSpot)
     
 
 print("Welcome to Hunt the Wumpus!")
@@ -68,14 +78,14 @@ while True:
         
         while True:
             print("\nYou are now in room", location, "of the cave.")
-            move = input("Would you like to shoot, move, or quit? Input S for shoot, M for move, or Q for quit.")
+            move = input("Would you like to shoot, move, or quit? Input S for shoot, M for move, or Q for quit.\n")
             if move.upper() == "M":
                 possibleRooms = cave[location]
                 print("You can move to the following rooms:")
                 print(possibleRooms[0], possibleRooms[1], possibleRooms[2])
                 checkRooms(bats, pitfalls, wumpusLocation, possibleRooms)
                 while True:
-                    newLocation = input("Where would you like to move?")
+                    newLocation = input("Where would you like to move?\n")
                     if (newLocation in possibleRooms):
                         location = newLocation
                         break
@@ -89,6 +99,16 @@ while True:
                 break
             else:
                 print("Invalid input. Please try again.")
+            if location in bats:
+                location = batTrap()
+            if location == wumpusLocation:
+                print("The wumpus has found you and will now eat you!")
+                print("GAME OVER\n")
+                break
+            if location in pitfalls:
+                print("You fell down a pit!")
+                print("GAME OVER\n")
+                break
     # Exit
     elif choice == "3":
         print("Goodbye!")
