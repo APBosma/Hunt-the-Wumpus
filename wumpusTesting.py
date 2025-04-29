@@ -52,6 +52,13 @@ class TestWumpus(unittest.TestCase):
     def testShootingLose(self):
         self.assertEqual("no win", self.game.shootArrow("3", ["3", "5", "6"], "100"))
         
+    
+    
+    # Test set Location, setLocation(self, newSpot)
+    def locationChange(self):
+        self.game.setLocation("12")
+        self.assertEqual("12", self.game.getLocation())
+        
         
         
 if __name__ == '__main__':
