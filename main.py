@@ -91,14 +91,17 @@ while True:
                         break
                     else:
                         print("Invalid location. Try again.")
-                
+            # Shoot arrows
             elif move.upper() == "S":
                 print("Pew pew")
+            # quit
             elif move.upper() == "Q":
                 print("Goodbye!")
                 break
             else:
                 print("Invalid input. Please try again.")
+            
+            # Location checks for traps/wumpus
             if location in bats:
                 location = batTrap()
             if location == wumpusLocation:
