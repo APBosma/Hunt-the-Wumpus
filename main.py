@@ -1,4 +1,4 @@
-import random
+from character import Character
 
 cave = { "1": ["5", "8", "13"], # https://graphonline.top/en/
     "2": ["6", "8", "14"],
@@ -40,25 +40,6 @@ def printInstructions():
     print("Warnings")
     print("When you are one room away from a wumpus or hazard, the computer says:\n")
     print("Wumpus: \"I smell a wumpus\"\nBat: \"Bats nearby\"\nPit: \"I feel a draft\"\n\n")
-
-# Output messages that there is a trap, bats, or wumpus nearby
-def checkRooms(bats, pitfalls, wumpus, possibleRooms):
-    # If bats nearby
-    if (possibleRooms[0] in bats or possibleRooms[1] in bats or possibleRooms[2] in bats):
-        print("Bats nearby")
-    # If nearby Wumpus
-    if (possibleRooms[0] == wumpus or possibleRooms[1] == wumpus or possibleRooms[2] == wumpus):
-        print("I smell a wumpus")
-    # If nearby pitfall
-    if (possibleRooms[0] in pitfalls or possibleRooms[1] in pitfalls or possibleRooms[2] in pitfalls):
-        print("I feel a draft")
-
-# Got hit by bats
-def batTrap():
-    print("Uh oh! Bats!")
-    newSpot = random.randint(0, 20)
-    print("After being carried away by bats you find yourself at", newSpot)
-    return str(newSpot)
     
 
 print("Welcome to Hunt the Wumpus!")
@@ -73,26 +54,19 @@ while True:
         bats = cave["Bats"]
         pitfalls = cave["Pitfalls"]
         wumpusLocation = cave["Wumpus"]
-        location = "1"
-        arrows = 5
+        character = Character()
         
         # While game is running
         while True:
-            print("\nYou are now in room", location, "of the cave.")
+            print("\nYou are now in room", character.getLocation(), "of the cave.")
             move = input("Would you like to shoot, move, or quit? Input S for shoot, M for move, or Q for quit.\n")
             if move.upper() == "M":
-                possibleRooms = cave[location]
+                possibleRooms = cave[character.getLocation()]
                 print("You can move to the following rooms:")
                 print(possibleRooms[0], possibleRooms[1], possibleRooms[2])
-                checkRooms(bats, pitfalls, wumpusLocation, possibleRooms)
+                character.checkRooms(bats, pitfalls, wumpusLocation, possibleRooms)
                 # Input validation for movement
-                while True:
-                    newLocation = input("Where would you like to move?\n")
-                    if (newLocation in possibleRooms):
-                        location = newLocation
-                        break
-                    else:
-                        print("Invalid location. Try again.")
+                character.moveRooms(possibleRooms)
             # Shoot arrows
             elif move.upper() == "S":
                 print("Pew pew")
@@ -104,13 +78,13 @@ while True:
                 print("Invalid input. Please try again.")
             
             # Location checks for traps/wumpus
-            if location in bats:
-                location = batTrap()
-            if location == wumpusLocation:
+            if character.getLocation() in bats:
+                character.batTrap()
+            if character.getLocation() == wumpusLocation:
                 print("The wumpus has found you and will now eat you!")
                 print("GAME OVER\n")
                 break
-            if location in pitfalls:
+            if character.getLocation() in pitfalls:
                 print("You fell down a pit!")
                 print("GAME OVER\n")
                 break
