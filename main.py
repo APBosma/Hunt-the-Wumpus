@@ -1,6 +1,6 @@
 from character import Character
 
-cave = { "1": ["5", "8", "13"], # https://graphonline.top/en/
+cave = { "1": ["5", "8", "13"], 
     "2": ["6", "8", "14"],
     "3": ["13", "17", "16"],
     "4": ["5", "8", "13"],
@@ -58,12 +58,13 @@ while True:
         # While game is running
         while True:
             print("\nYou are now in room", character.getLocation(), "of the cave.")
+            possibleRooms = cave[character.getLocation()]
+            character.checkRooms(bats, pitfalls, wumpusLocation, possibleRooms)
             move = input("Would you like to shoot, move, or quit? Input S for shoot, M for move, or Q for quit.\n")
+            
             if move.upper() == "M":
-                possibleRooms = cave[character.getLocation()]
                 print("You can move to the following rooms:")
                 print(possibleRooms[0], possibleRooms[1], possibleRooms[2])
-                character.checkRooms(bats, pitfalls, wumpusLocation, possibleRooms)
                 character.moveRooms(possibleRooms)
             # Shoot arrows
             elif move.upper() == "S":
@@ -77,9 +78,10 @@ while True:
                         print("That is not a valid number of arrows. Please try again.")
                     else:
                         break
+                print("Nearby Rooms:", possibleRooms[0], possibleRooms[1], possibleRooms[2]) 
                 for shot in range(numArrows):
                     room = input("\nWhere would you like to shoot your arrow?\n")
-                    success = character.shootArrow(room, cave[character.getLocation()], wumpusLocation)
+                    success = character.shootArrow(room, possibleRooms, wumpusLocation)
                     if success == "win":
                         print("You have shot and killed the wumpus!")
                         print("YOU WIN\n")

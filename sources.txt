@@ -1,0 +1,7 @@
+I used a website to graph out my cave initially before creating it (https://graphonline.top/en/). I have the graph saved in a secret location so you can't cheat Mr. Bowe (Dr. Bowe when?). 
+
+I used our previous work in networking to map out our cave once I had the graph so that it was easy to get possible rooms for the character and Wumpus to travel to.
+
+Forgot if I had to use commas in dictionaries so I used https://www.w3schools.com/python/python_dictionaries.asp for reference.
+
+Used Yahtzee for reference for testing and my class because I forgot it's __init__, not _innit_ like some British person.

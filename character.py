@@ -28,6 +28,7 @@ class Character:
         print("After being carried away by bats you find yourself at", newSpot)
         self.location = str(newSpot)
         
+    # Character movement
     def moveRooms(self, possibleRooms):
         while True:
             newLocation = input("Where would you like to move?\n")
@@ -37,6 +38,7 @@ class Character:
             else:
                 print("Invalid location. Try again.")
     
+    # Hit wumpus
     def rollWumpus(self, wumpusLocation, possibleLocations):
         if wumpusLocation != self.location:
             return wumpusLocation
@@ -48,6 +50,7 @@ class Character:
         else:
             return "21"
         
+    # Shooting arrows
     def shootArrow(self, room, possibleRooms, wumpus):
         if room in possibleRooms:
             if wumpus == room:
@@ -59,6 +62,10 @@ class Character:
                 return "win"
             self.arrows -= 1
         return "no win"
+    
+    # Set location of character for testing
+    def setLocation(self, newSpot):
+        self.location = newSpot
         
         
         
