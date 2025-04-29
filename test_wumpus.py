@@ -14,17 +14,6 @@ class TestWumpus(unittest.TestCase):
         
     def testArrows(self):
         self.assertEqual(5, self.game.getArrows())
-        
-        
-        
-    # Testing movement, moveRooms(self, possibleRooms)
-#     def testMovement(self):
-#         self.game.moveRooms(["2", "3", "4"])
-#         if self.game.getLocation() not in ["2", "3", "4"]:
-#             success = False
-#         else:
-#             success = True
-#         self.assertEqual(success, True)
     
     
     
