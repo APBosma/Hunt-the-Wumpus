@@ -2,7 +2,7 @@ print("Welcome to Hunt the Wumpus!")
 
 while True:
     choice = input("Type 1 to read the instructions, 2 to play the game, or 3 to quit.\n")
-    
+    # Instructions
     if choice == "1":
         print("The wumpus lives in a cave of 20 rooms. Each room has 3 tunnels leading to other rooms. (Look at a dodecahedron to see how this works - if you don't know what a dodecahedron is, ask someone).\n\n")
         print("Hazards")
@@ -18,11 +18,14 @@ while True:
         print("Warnings")
         print("When you are one room away from a wumpus or hazard, the computer says:\n")
         print("Wumpus: \"I smell a wumpus\"\nBat: \"Bats nearby\"\nPit: \"I feel a draft\"\n\n")
+    # Start game
     elif choice == "2":
         print("Okay")
+    # Exit
     elif choice == "3":
         print("Goodbye!")
         break
+    # Bad input
     else:
         print("Invalid input, please try again.")
     
