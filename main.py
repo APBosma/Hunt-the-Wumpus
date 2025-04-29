@@ -73,15 +73,15 @@ while True:
                 numArrows = 0
                 while True:
                     numArrows = input("How many arrows would you like to use?\n")
-                    if numArrows > character.getArrows():
+                    if int(numArrows) > character.getArrows():
                         print("You don't have that many arrows.")
-                    elif numArrows < 1:
+                    elif int(numArrows) < 1:
                         print("That is not a valid number of arrows. Please try again.")
                     else:
                         break
-                for shot in numArrows:
+                for shot in range(int(numArrows)):
                     room = input("\nWhere would you like to shoot your arrow?\n")
-                    success = character.shootArrow(room, possibleRooms[Character.getLocation()], wumpusLocation)
+                    success = character.shootArrow(room, cave[character.getLocation()], wumpusLocation)
                     if success == "win":
                         print("You have shot and killed the wumpus!")
                         print("YOU WIN\n")
@@ -96,7 +96,7 @@ while True:
                 print("Invalid input. Please try again.")
             
             # Location checks for traps/wumpus
-            if getArrows < 1:
+            if character.getArrows() < 1:
                 print("You are out of arrows!")
                 print("GAME OVER\n")
                 break

@@ -48,7 +48,7 @@ class Character:
         else:
             return "21"
         
-    def shootArrow(self, room, possibleRooms[Character.getLocation()], wumpus):
+    def shootArrow(self, room, possibleRooms, wumpus):
         if room in possibleRooms:
             if wumpus == room:
                 return "win"
