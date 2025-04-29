@@ -24,7 +24,7 @@ class Character:
     # Got hit by bats
     def batTrap(self):
         print("Uh oh! Bats!")
-        newSpot = random.randint(0, 20)
+        newSpot = random.randint(1, 20)
         print("After being carried away by bats you find yourself at", newSpot)
         self.location = str(newSpot)
         
@@ -54,7 +54,7 @@ class Character:
                 return "win"
             self.arrows -= 1
         else:
-            newRoom = random.randint(0,20)
+            newRoom = random.randint(1,20)
             if wumpus == newRoom:
                 return "win"
             self.arrows -= 1

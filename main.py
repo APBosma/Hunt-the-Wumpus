@@ -43,7 +43,6 @@ def printInstructions():
     
 
 print("Welcome to Hunt the Wumpus!")
-
 while True:
     choice = input("Type 1 to read the instructions, 2 to play the game, or 3 to quit.\n")
     # Instructions
@@ -65,21 +64,20 @@ while True:
                 print("You can move to the following rooms:")
                 print(possibleRooms[0], possibleRooms[1], possibleRooms[2])
                 character.checkRooms(bats, pitfalls, wumpusLocation, possibleRooms)
-                # Input validation for movement
                 character.moveRooms(possibleRooms)
             # Shoot arrows
             elif move.upper() == "S":
                 success = ""
                 numArrows = 0
                 while True:
-                    numArrows = input("How many arrows would you like to use?\n")
-                    if int(numArrows) > character.getArrows():
+                    numArrows = int(input("How many arrows would you like to use?\n"))
+                    if numArrows > character.getArrows():
                         print("You don't have that many arrows.")
-                    elif int(numArrows) < 1:
+                    elif numArrows < 1:
                         print("That is not a valid number of arrows. Please try again.")
                     else:
                         break
-                for shot in range(int(numArrows)):
+                for shot in range(numArrows):
                     room = input("\nWhere would you like to shoot your arrow?\n")
                     success = character.shootArrow(room, cave[character.getLocation()], wumpusLocation)
                     if success == "win":
@@ -95,11 +93,12 @@ while True:
             else:
                 print("Invalid input. Please try again.")
             
-            # Location checks for traps/wumpus
             if character.getArrows() < 1:
                 print("You are out of arrows!")
                 print("GAME OVER\n")
                 break
+            
+            # Location checks for traps/wumpus
             if character.getLocation() in bats:
                 character.batTrap()
             if character.getLocation() in pitfalls:
