@@ -9,15 +9,15 @@ class Character:
     def getLocation(self):
         return self.location
     
+    def getArrows(self):
+        return self.arrows
+    
     # Output messages that there is a trap, bats, or wumpus nearby
     def checkRooms(self, bats, pitfalls, wumpus, possibleRooms):
-        # If bats nearby
         if (possibleRooms[0] in bats or possibleRooms[1] in bats or possibleRooms[2] in bats):
             print("Bats nearby")
-        # If nearby Wumpus
         if (possibleRooms[0] == wumpus or possibleRooms[1] == wumpus or possibleRooms[2] == wumpus):
             print("I smell a wumpus")
-        # If nearby pitfall
         if (possibleRooms[0] in pitfalls or possibleRooms[1] in pitfalls or possibleRooms[2] in pitfalls):
             print("I feel a draft")
 
@@ -36,6 +36,29 @@ class Character:
                 break
             else:
                 print("Invalid location. Try again.")
+    
+    def rollWumpus(self, wumpusLocation, possibleLocations):
+        if wumpusLocation != self.location:
+            return wumpusLocation
+        
+        wakeUp = random.randint(1, 4)
+        if wakeUp < 4:
+            print("You scared away the wumpus!")
+            return possibleLocations[wakeUp-1]
+        else:
+            return "21"
+        
+    def shootArrow(self, room, possibleRooms[Character.getLocation()], wumpus):
+        if room in possibleRooms:
+            if wumpus == room:
+                return "win"
+            self.arrows -= 1
+        else:
+            newRoom = random.randint(0,20)
+            if wumpus == newRoom:
+                return "win"
+            self.arrows -= 1
+        return "no win"
         
         
         

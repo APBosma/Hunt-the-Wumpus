@@ -69,10 +69,21 @@ while True:
                 character.moveRooms(possibleRooms)
             # Shoot arrows
             elif move.upper() == "S":
-                print("Pew pew")
+                numArrows = 0
+                while True:
+                    numArrows = input("How many arrows would you like to use?\n")
+                    if numArrows > character.getArrows():
+                        print("You don't have that many arrows.")
+                    elif numArrows < 1:
+                        print("That is not a valid number of arrows. Please try again.")
+                    else:
+                        break
+                for shot in numArrows:
+                    room = input("\nWhere would you like to shoot your arrow?\n")
+                    character.shootArrow(room, possibleRooms[Character.getLocation()], wumpusLocation)
             # quit
             elif move.upper() == "Q":
-                print("Goodbye!")
+                print("Coward")
                 break
             else:
                 print("Invalid input. Please try again.")
@@ -80,12 +91,13 @@ while True:
             # Location checks for traps/wumpus
             if character.getLocation() in bats:
                 character.batTrap()
-            if character.getLocation() == wumpusLocation:
-                print("The wumpus has found you and will now eat you!")
-                print("GAME OVER\n")
-                break
             if character.getLocation() in pitfalls:
                 print("You fell down a pit!")
+                print("GAME OVER\n")
+                break
+            wumpusLocation = character.rollWumpus(wumpusLocation, cave[wumpusLocation])
+            if wumpusLocation == "21":
+                print("The wumpus has found you and will now eat you!")
                 print("GAME OVER\n")
                 break
     # Exit
