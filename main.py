@@ -40,7 +40,15 @@ def printInstructions():
     print("Wumpus: \"I smell a wumpus\"\nBat: \"Bats nearby\"\nPit: \"I feel a draft\"\n\n")
 
 def checkRooms(bats, pitfalls, wumpus, possibleRooms):
-    print("Soon to be something")
+    # If bats nearby
+    if (possibleRooms[0] in bats or possibleRooms[1] in bats or possibleRooms[2] in bats):
+        print("Bats nearby")
+    # If nearby Wumpus
+    if (possibleRooms[0] == wumpus or possibleRooms[1] == wumpus or possibleRooms[2] == wumpus):
+        print("I smell a wumpus")
+    # If nearby pitfall
+    if (possibleRooms[0] in pitfalls or possibleRooms[1] in pitfalls or possibleRooms[2] in pitfalls):
+        print("I feel a draft")
     
 
 print("Welcome to Hunt the Wumpus!")
@@ -65,15 +73,7 @@ while True:
                 possibleRooms = cave[location]
                 print("You can move to the following rooms:")
                 print(possibleRooms[0], possibleRooms[1], possibleRooms[2])
-                # If bats nearby
-                if (possibleRooms[0] in bats or possibleRooms[1] in bats or possibleRooms[2] in bats):
-                    print("Bats nearby")
-                # If nearby Wumpus
-                if (possibleRooms[0] == wumpusLocation or possibleRooms[1] == wumpusLocation or possibleRooms[2] == wumpusLocation):
-                    print("I smell a wumpus")
-                # If nearby pitfall
-                if (possibleRooms[0] in pitfalls or possibleRooms[1] in pitfalls or possibleRooms[2] in pitfalls):
-                    print("I feel a draft")
+                checkRooms(bats, pitfalls, wumpusLocation, possibleRooms)
                 while True:
                     newLocation = input("Where would you like to move?")
                     if (newLocation in possibleRooms):
