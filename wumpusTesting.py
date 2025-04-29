@@ -6,12 +6,16 @@ class TestWumpus(unittest.TestCase):
     def setUp(self):
         self.game = Character()
         
+        
+        
     # Test getters
     def testLocation(self):
         self.assertEqual("1", self.game.getLocation())
         
     def testArrows(self):
         self.assertEqual(5, self.game.getArrows())
+        
+        
         
     # Testing movement, moveRooms(self, possibleRooms)
     def testMovement(self):
@@ -21,6 +25,8 @@ class TestWumpus(unittest.TestCase):
         else:
             success = True
         self.assertEqual(success, True)
+    
+    
     
     # Testing wumpus, rollWumpus(self, wumpusLocation, possibleLocations)
     # Wumpus doesn't move
@@ -36,6 +42,16 @@ class TestWumpus(unittest.TestCase):
         else:
             sucess = False
         self.assertEqual(success, True)
+        
+        
+        
+    # Test shooting, shootArrow(self, room, possibleRooms, wumpus)
+    def testShootingWin(self):
+        self.assertEqual("win", self.game.shootArrow("3", ["3", "5", "6"], "3"))
+        
+    def testShootingLose(self):
+        self.assertEqual("no win", self.game.shootArrow("3", ["3", "5", "6"], "100"))
+        
         
         
 if __name__ == '__main__':
