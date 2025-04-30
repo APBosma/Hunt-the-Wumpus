@@ -26,6 +26,10 @@ cave = { "1": ["5", "8", "13"],
 }
 
 def printInstructions():
+    '''
+    No input, no return
+    Outputs the directions
+    '''
     print("The wumpus lives in a cave of 20 rooms. Each room has 3 tunnels leading to other rooms. (Look at a dodecahedron to see how this works - if you don't know what a dodecahedron is, ask someone).\n\n")
     print("Hazards")
     print("Bottomless pits - two rooms have bottomless pits in them. If you go there, you fall into the pit (& lose!)")

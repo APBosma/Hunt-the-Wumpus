@@ -7,13 +7,25 @@ class Character:
         self.location = location
         
     def getLocation(self):
+        '''
+        No inputs
+        Returns character's location
+        '''
         return self.location
     
     def getArrows(self):
+        '''
+        No inputs
+        Returns the number of arrows left
+        '''
         return self.arrows
     
-    # Output messages that there is a trap, bats, or wumpus nearby
     def checkRooms(self, bats, pitfalls, wumpus, possibleRooms):
+        '''
+        Inputs: bat locations, pitfall locations, wumpus location, and possible rooms the character could enter
+        Returns nothing
+        Outputs warnings for nearby monsters
+        '''
         if (possibleRooms[0] in bats or possibleRooms[1] in bats or possibleRooms[2] in bats):
             print("Bats nearby")
         if (possibleRooms[0] == wumpus or possibleRooms[1] == wumpus or possibleRooms[2] == wumpus):
@@ -23,6 +35,11 @@ class Character:
 
     # Got hit by bats
     def batTrap(self):
+        '''
+        No inputs
+        Returns nothing
+        Changes the character's location to a random room
+        '''
         print("Uh oh! Bats!")
         newSpot = random.randint(1, 20)
         print("After being carried away by bats you find yourself at", newSpot)
@@ -30,6 +47,11 @@ class Character:
         
     # Character movement
     def moveRooms(self, possibleRooms):
+        '''
+        Inputs: Possible rooms character could enter
+        Returns nothing
+        Moves character to wherever they select, with input validation
+        '''
         while True:
             newLocation = input("Where would you like to move?\n")
             if (newLocation in possibleRooms):
@@ -40,6 +62,11 @@ class Character:
     
     # Hit wumpus
     def rollWumpus(self, wumpusLocation, possibleLocations):
+        '''
+        Inputs: Wumpus location, possible location for wumpus to go
+        Returns either the character's death, or where the wumpus moved
+        You ran into the wumpus
+        '''
         if wumpusLocation != self.location:
             return wumpusLocation
         
@@ -50,8 +77,11 @@ class Character:
         else:
             return "21"
         
-    # Shooting arrows
     def shootArrow(self, room, possibleRooms, wumpus):
+        '''
+        Inputs: The room the arrow will be shot to, possible rooms the character can enter, and wumpus location
+        Returns if you won or not
+        '''
         if room in possibleRooms:
             if wumpus == room:
                 return "win"
@@ -63,8 +93,12 @@ class Character:
             self.arrows -= 1
         return "no win"
     
-    # Set location of character for testing
     def setLocation(self, newSpot):
+        '''
+        Inputs: New location to set the character at
+        Returns nothing
+        Only used in testing
+        '''
         self.location = newSpot
         
         
