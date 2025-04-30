@@ -7,3 +7,9 @@ Forgot if I had to use commas in dictionaries so I used https://www.w3schools.co
 Used Yahtzee for reference for testing and my class because I forgot it's __init__, not _innit_ like some British person.
 
 Professor Bowe helped me with GitHub actions because I had to change GitHub actions to work for my code. He also revealed I could not take input for GitHub actions testing. Professor Bowe also helped me fix my docker by showing me that I had to do "docker run -it address" instead of "docker run -i address."
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+I did not use AI for this project.
+
+Everything in this code works (Probably).
